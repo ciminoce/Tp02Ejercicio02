@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Channels;
 
 namespace Tp02Ejercicio02
 {
@@ -13,6 +14,9 @@ namespace Tp02Ejercicio02
                 if (fechaNacimiento <= DateTime.Today)
                 {
                     var signoZodiaco = InformarSignoZodiaco(fechaNacimiento.Day, fechaNacimiento.Month);
+                    Console.WriteLine($"Por haber nacido el día {fechaNacimiento} le corresponde el signo del zodíaco {signoZodiaco}");
+                    var signoChino = InformarSignoChino(fechaNacimiento.Year);
+                    Console.WriteLine($"Y en el Horóscopo Chino le corresponde {signoChino}");
                 }
             }
             else
@@ -20,6 +24,53 @@ namespace Tp02Ejercicio02
                 Console.WriteLine("Fecha de nacimiento mal ingresada");
             }
             Console.ReadLine();
+        }
+
+        private static string InformarSignoChino(int anio)
+        {
+            string signo;
+            var resto = anio % 12;
+            switch (resto)
+            {
+                case 0:
+                    signo = "Mono";
+                    break;
+                case 1:
+                    signo = "Gallo";
+                    break;
+                case 2:
+                    signo = "Perro";
+                    break;
+                case 3:
+                    signo = "Cerdo";
+                    break;
+                case 4:
+                    signo = "Rata";
+                    break;
+                case 5:
+                    signo = "Buey";
+                    break;
+                case 6:
+                    signo = "Tigre";
+                    break;
+                case 7:
+                    signo = "Conejo";
+                    break;
+                case 8:
+                    signo = "Ratón";
+                    break;
+                case 9:
+                    signo = "Serpiente";
+                    break;
+                case 10:
+                    signo = "Caballo";
+                    break;
+                default:
+                    signo = "Cabra";
+                    break;
+
+            }
+            return signo;
         }
 
         private static string InformarSignoZodiaco(int dia, int mes)
